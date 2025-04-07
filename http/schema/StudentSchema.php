@@ -29,7 +29,7 @@ class StudentSchema {
                 // Vamos metiendo aquí los datos, ya sean correctos o no. Cuando algún dato no sea correcto el success será false
                 // y se añadirán los errores uno a uno en 'errors'
                 $validation = [
-                    'success' => true,
+                    'success' => true, // Iniciamos en true y si hay algún error se cambia a false
                     'data' => [
                         'nombre' => '',
                         'apellidos' => '',

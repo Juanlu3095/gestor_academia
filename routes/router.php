@@ -47,7 +47,8 @@ class Router {
                 $handler = $routeInfo[1];
                 $vars = $routeInfo[2];
                 if($_GET && $_SERVER['REQUEST_METHOD'] === 'GET') { // El método también debe ser 'GET'
-                    return call_user_func($handler, array_merge($vars, $_GET)); // Incluimos las query params si están
+                    // Incluimos las query params si están en $_GET. Llegan al controlador como parámetro de la función
+                    return call_user_func($handler, array_merge($vars, $_GET)); 
                 }
                 return call_user_func($handler, $vars); // Devuelve la función del controlador para ver la vista
                 break;
