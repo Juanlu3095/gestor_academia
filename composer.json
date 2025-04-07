@@ -1,0 +1,35 @@
+{
+    "name": "juanlu/gestor_academia_mvc",
+    "description": "Un gestor para academias",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Juanlu3095"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^12.0",
+        "guzzlehttp/guzzle": "^7.9"
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "nikic/fast-route": "^1.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "config\\": "config/",
+            "database\\": "database/",
+            "src\\": "src/",
+            "routes\\": "routes/",
+            "tests\\": "tests/",
+            "http\\": "http/",
+            "services\\": "services/"
+        }
+    },
+    "scripts": {
+        "migrate": "php database/migrations/migrations.php",
+        "seed": "php database/seeders/seeders.php",
+        "test": "php vendor/phpunit/phpunit/phpunit",
+        "test-class" : "php vendor/phpunit/phpunit/phpunit --filter"
+    }
+}
