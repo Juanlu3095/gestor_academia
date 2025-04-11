@@ -2,7 +2,7 @@
 
 namespace database\migrations;
 
-$dbconfig = require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../../config/database.php';
 
 use database\migrations\DatabaseMigration;
 use database\migrations\UserMigration;
@@ -13,14 +13,14 @@ use database\migrations\CourseStudentMigration;
 use database\migrations\DocumentMigration;
 use database\migrations\IncidenceMigration;
 
-$database = new DatabaseMigration($dbconfig);
-$users = new UserMigration($dbconfig);
-$students = new StudentMigration($dbconfig);
-$teachers = new TeacherMigration($dbconfig);
-$courses = new CourseMigration($dbconfig);
-$courseStudents = new CourseStudentMigration($dbconfig);
-$documents = new DocumentMigration($dbconfig);
-$incidences = new IncidenceMigration($dbconfig);
+$database = new DatabaseMigration(DBCONFIG);
+$users = new UserMigration(DBCONFIG);
+$students = new StudentMigration(DBCONFIG);
+$teachers = new TeacherMigration(DBCONFIG);
+$courses = new CourseMigration(DBCONFIG);
+$courseStudents = new CourseStudentMigration(DBCONFIG);
+$documents = new DocumentMigration(DBCONFIG);
+$incidences = new IncidenceMigration(DBCONFIG);
 
 return [
     $database->migrate(),

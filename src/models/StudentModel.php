@@ -30,7 +30,7 @@ class StudentModel extends Connection {
             } else {
                 $consulta->execute();
             }
-            $resultado = $consulta->fetchAll();
+            $resultado = $consulta->fetchAll(); // Los fetch sólo sirven para los SELECT
 
             return $resultado;
         } catch (Exception $e) {
@@ -64,7 +64,7 @@ class StudentModel extends Connection {
             $consulta->bindParam(':email', $request['email']);
             $consulta->bindParam(':dni', $request['dni']);
             $consulta->execute();
-            $resultado = $consulta->fetchAll();
+            $resultado = $consulta->rowCount(); // Devuelve el número de filas creadas
 
             return $resultado;
         } catch (Exception $e) {
@@ -75,15 +75,16 @@ class StudentModel extends Connection {
     public function updateStudent(string $id, array $request)
     {
         try {
-            $sql = "UPDATE `students` SET (nombre, apellidos, email, dni) VALUES (:nombre, :apellidos, :email, :dni) WHERE HEX(id) = ?;";
+            $sql = "UPDATE `students` SET nombre=:nombre, apellidos=:apellidos, email=:email, dni=:dni WHERE HEX(id)=:id;";
             $conexion = $this->accesoDB();
             $consulta = $conexion->prepare($sql);
-            $consulta->bindParam(':nombre', $request['nombre']);
-            $consulta->bindParam(':apellidos', $request['apellidos']);
-            $consulta->bindParam(':email', $request['email']);
-            $consulta->bindParam(':dni', $request['dni']);
-            $consulta->execute([$id]);
-            $resultado = $consulta->fetchAll();
+            $consulta->bindParam(":nombre", $request['nombre']);
+            $consulta->bindParam(":apellidos", $request['apellidos']);
+            $consulta->bindParam(":email", $request['email']);
+            $consulta->bindParam(":dni", $request['dni']);
+            $consulta->bindParam(":id", $id);
+            $consulta->execute();
+            $resultado = $consulta->rowCount(); // Devuelve las filas modificadas
 
             return $resultado;
         } catch (Exception $e) {
@@ -94,11 +95,11 @@ class StudentModel extends Connection {
     public function deleteStudent(string $id)
     {
         try {
-            $sql = "DELETE `students` WHERE HEX(id) = ?";
+            $sql = "DELETE FROM `students` WHERE HEX(id) = ?";
             $conexion = $this->accesoDB();
             $consulta = $conexion->prepare($sql);
             $consulta->execute([$id]);
-            $resultado = $consulta->fetchAll();
+            $resultado = $consulta->rowCount(); // Devuelve el número de filas afectadas
 
             return $resultado;
         } catch (Exception $e) {

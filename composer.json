@@ -23,7 +23,8 @@
             "routes\\": "routes/",
             "tests\\": "tests/",
             "http\\": "http/",
-            "services\\": "services/"
+            "services\\": "services/",
+            "interfaces\\": "interfaces/"
         }
     },
     "scripts": {

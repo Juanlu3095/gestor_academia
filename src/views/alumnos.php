@@ -38,7 +38,7 @@ include_once 'partials/head.php'
                             <td id="table-dni"><?= $student['dni'] ?></td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal" data-editar="<?= $student['id'] ?>" onclick="verAlumno(this)">Editar</button>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal"data-eliminarid="<?= $student['id'] ?>" data-eliminarnombre="<?= $student['nombre'] ?>" onclick="eliminarModal(this)">Eliminar</button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal" data-eliminarid="<?= $student['id'] ?>" data-eliminarnombre="<?= $student['nombre'] ?>" onclick="eliminarModal(this)">Eliminar</button>
                             </td>
                         </tr>
                     <?php } ?>
@@ -118,7 +118,7 @@ include_once 'partials/head.php'
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="Cancelar">Cerrar</button>
-                        <button type="button" class="btn btn-primary" onclick="editarModal()">Guardar cambios</button>
+                        <button type="button" class="btn btn-primary" onclick="editarAlumno()">Guardar cambios</button>
                     </div>
                 </form>
             </div>

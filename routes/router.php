@@ -21,13 +21,17 @@ class Router {
 
         // Rutas de la aplicación: MÉTODO + URL + FUNCIÓN DEL CONTROLADOR
         $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) use ($root) {
+
+            $studentController = new StudentController();
+
             $r->addRoute('GET', "$root/", [InicioController::class, 'index']);
             $r->addRoute('GET', "$root/users", [InicioController::class, 'users']);
 
-            $r->addRoute('GET', "$root/alumnos", [StudentController::class, 'index']);
-            $r->addRoute('GET', "$root/alumnos/{id}", [StudentController::class, 'show']);
-            $r->addRoute('POST', "$root/alumnos", [StudentController::class, 'create']);
-            $r->addRoute('PUT', "$root/alumnos/{id}", [StudentController::class, 'update']);
+            $r->addRoute('GET', "$root/alumnos", [$studentController, 'index']);
+            $r->addRoute('GET', "$root/alumnos/{id}", [$studentController, 'show']);
+            $r->addRoute('POST', "$root/alumnos", [$studentController, 'create']);
+            $r->addRoute('PUT', "$root/alumnos/{id}", [$studentController, 'update']);
+            $r->addRoute('DELETE', "$root/alumnos/{id}", [$studentController, 'delete']);
         });
 
         // Se compara la $url que nos llega por parámetro a la función con la lista en $dispatcher

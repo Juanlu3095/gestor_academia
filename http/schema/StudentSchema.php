@@ -80,7 +80,55 @@ class StudentSchema {
                 break;
 
             case 'PUT':
-                echo 'Este es el PUT';
+                $validation = [
+                    'success' => true, // Iniciamos en true y si hay algún error se cambia a false
+                    'data' => [
+                        'nombre' => '',
+                        'apellidos' => '',
+                        'email' => '',
+                        'dni' => '',
+                    ],
+                    'errors' => [
+                        'nombre' => '',
+                        'apellidos' => '',
+                        'email' => '',
+                        'dni' => '',
+                    ]
+                ]; 
+
+                // NOMBRE
+                if($request['nombre'] && is_string($request['nombre'])) {
+                    $validation['data']['nombre'] = preg_replace('([^A-Za-záéíóúÁÉÍÓÚ ])', '', $request['nombre']);
+                } else {
+                    $validation['success'] = false;
+                    $validation['errors']['nombre'] = 'El campo nombre no es correcto.';
+                }
+
+                // APELLIDOS
+                if($request['apellidos'] && is_string($request['apellidos'])) {
+                    $validation['data']['apellidos'] = preg_replace('([^A-Za-záéíóúÁÉÍÓÚ ])', '', $request['apellidos']);
+                } else {
+                    $validation['success'] = false;
+                    $validation['errors']['apellidos'] = 'El campo apellidos no es correcto.';
+                }
+
+                // EMAIL
+                if(filter_var($request['email'], FILTER_VALIDATE_EMAIL)) {
+                    $validation['data']['email'] = $request['email'];
+                } else {
+                    $validation['success'] = false;
+                    $validation['errors']['email'] = 'El campo email no es correcto.';
+                }
+
+                // DNI
+                if($request['dni'] && self::is_valid_dni($request['dni'])) {
+                    $validation['data']['dni'] = $request['dni'];
+                } else {
+                    $validation['success'] = false;
+                    $validation['errors']['dni'] = 'El campo dni no es correcto.';
+                }
+
+                return $validation;
                 break;
 
             default:
