@@ -36,50 +36,6 @@ function crearAlumno() {
             $('.invalid-feedback-dni').append(JSON.parse(error.responseText).errores.dni)
         }
     })
-
-    // CON ESTO MOSTRABA EL ALERT INCLUSO SI HUBIESE ERROR
-    /* fetch('/gestor_academia_mvc/alumnos', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-type': 'application/json',
-        },
-        body: JSON.stringify({
-            nombre: nombre,
-            apellidos: apellidos,
-            email: email,
-            dni: dni
-        })
-    })
-    .then(async respuesta => {
-        console.log('Respuesta: ', respuesta)
-        if (!respuesta.ok) {
-            return await respuesta.clone().json().then(promesa => {
-                console.log('Esta es la promesa: ', promesa)
-                throw new Error("Error " + respuesta.status + " al llamar al backend: " + respuesta.statusText);
-                // Coger el objeto obtenido y pasarlo al formulario debajo de cada input si hay error
-                
-            })
-            .catch(error => {
-                console.error(error)
-            })
-        }
-        
-        return respuesta.text()
-    })
-    .then(datos => {
-        console.log('Éstos son los datos: ' , datos)
-        $( "#tabla" ).load( "/gestor_academia_mvc/alumnos #tabla" )
-        alert(JSON.parse(datos).mensaje)
-
-        // Si no hay errores
-        if(!JSON.parse(datos).errores) {
-            $('#nuevoModal').modal('hide')
-        }
-    })
-    .catch(error => {
-        console.error(error)
-    }) */
 }
 
 /**
@@ -113,7 +69,8 @@ function verAlumno(form) {
 }
 
 /**
- * It allows to edit data for a specific student
+ * It allows to edit data for a specific student. Using Fetch.
+ * @throws Error
  */
 function editarAlumno() {
     let id = document.querySelector('#editar-form input[name=id]').value
@@ -136,24 +93,25 @@ function editarAlumno() {
         })
     })
     .then(async respuesta => {
-        console.log('Respuesta: ', respuesta)
+        $('.edit-invalid').empty()
+
         if (!respuesta.ok) {
-            console.error('BAD BOY')
-            return await respuesta.clone().json().then(async promesa => {
-                console.log('Esta es la promesa: ', promesa)
-                throw new Error("Error " + respuesta.status + " al llamar al backend: " + respuesta.statusText);
-                // Coger el objeto obtenido y pasarlo al formulario debajo de cada input si hay error
-                
+
+            respuesta.clone().json().then(async promesa => {
+                $('.invalid-feedback-editar-nombre').append(promesa.errores.nombre)
+                $('.invalid-feedback-editar-apellidos').append(promesa.errores.apellidos)
+                $('.invalid-feedback-editar-email').append(promesa.errores.email)
+                $('.invalid-feedback-editar-dni').append(promesa.errores.dni)
+            }).catch(error => {
+                console.error('No se ha podido obtener los datos: ', error)
             })
-            .catch(error => {
-                console.error('Error: ', error)
-            })
+
+            throw new Error("Error " + respuesta.status + " al llamar al backend: " + respuesta.statusText);
         }
         
         return respuesta.text()
     })
     .then(datos => {
-        console.log('Éstos son los datos: ' , datos)
         $("#tabla").load( "/gestor_academia_mvc/alumnos #tabla" );
         alert('Datos del alumno actualizados.')
         $('#editarModal').modal('hide')
@@ -175,7 +133,7 @@ function eliminarModal(data) // El parámetro debe estar en el botón eliminar
     document.getElementById('nombrealumno').innerHTML = nombre;
     confirmar = $("#confirmarEliminar");
     
-    // Se ejecuta cuando hacemos click para confirmar el delete
+    // Se ejecuta cuando hacemos click para confirmar el delete. Off elimina el listener para que no se ejecuten varios.
     confirmar.off('click').on('click', function() {
         $.ajax({
             type: 'DELETE',

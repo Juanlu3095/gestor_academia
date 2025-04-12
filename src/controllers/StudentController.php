@@ -86,7 +86,8 @@ class StudentController implements Controller{
 
         $query = $this->studentModel->createStudent($validateRequest['data']);
         if($query > 0) {
-            echo json_encode(['respuesta' => 201, 'mensaje' => 'Alumno añadido con éxito']);
+            echo json_encode(['mensaje' => 'Alumno añadido con éxito']);
+            http_response_code(201);
         }
 
     }
@@ -131,7 +132,7 @@ class StudentController implements Controller{
         $updatedStudent = $this->studentModel->updateStudent($id, $request);
 
         if($updatedStudent > 0) {
-            echo json_encode(['respuesta' => 200, 'mensaje' => 'Alumno actualizado con éxito.']);
+            echo json_encode(['mensaje' => 'Alumno actualizado con éxito.']);
         }
     }
 

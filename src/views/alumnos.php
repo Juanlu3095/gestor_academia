@@ -101,19 +101,23 @@ include_once 'partials/head.php'
                 </div>
                 <form action="" method="POST" id="editar-form">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control w-100 mb-4" id="editar-id" name="id">
+                        <input type="hidden" class="form-control w-100 mb-2" id="editar-id" name="id">
 
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control w-100 mb-4" id="editar-nombre" name="nombre">
+                        <input type="text" class="form-control w-100 mb-2" id="editar-nombre" name="nombre">
+                        <div class="invalid-feedback-editar-nombre edit-invalid text-danger mb-2"></div>
 
                         <label for="apellidos">Apellidos</label>
-                        <input type="text" class="form-control w-100 mb-4" id="editar-apellidos" name="apellidos">
+                        <input type="text" class="form-control w-100 mb-2" id="editar-apellidos" name="apellidos">
+                        <div class="invalid-feedback-editar-apellidos edit-invalid text-danger mb-2"></div>
 
                         <label for="email">Email</label>
-                        <input type="email" class="form-control w-100 mb-4" id="editar-email" name="email">
+                        <input type="email" class="form-control w-100 mb-2" id="editar-email" name="email">
+                        <div class="invalid-feedback-editar-email edit-invalid text-danger mb-2"></div>
 
                         <label for="dni">DNI</label>
-                        <input type="text" class="form-control w-100 mb-4" id="editar-dni" name="dni">
+                        <input type="text" class="form-control w-100 mb-2" id="editar-dni" name="dni">
+                        <div class="invalid-feedback-editar-dni edit-invalid text-danger mb-2"></div>
                 
                     </div>
                     <div class="modal-footer">
