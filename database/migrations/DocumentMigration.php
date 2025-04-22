@@ -21,9 +21,9 @@ class DocumentMigration {
             $consulta = $conexion->accesoDB()->prepare($sql);
             $consulta->execute();
 
-            echo 'Tabla documents creada con éxito.';
+            echo 'Tabla documents creada con éxito.\n';
         } catch (Exception $e) {
-            echo 'Error al crear la tabla documents: ' . $e->getMessage() . ' Código del error: ' . $e->getCode();
+            echo 'Error al crear la tabla documents: ' . $e->getMessage() . ' Código del error: ' . $e->getCode() . "\n";
         }
     }
 }

@@ -21,9 +21,9 @@ class TeacherMigration {
             $consulta = $conexion->accesoDB()->prepare($sql);
             $consulta->execute();
 
-            echo 'Tabla teachers creada con éxito.';
+            echo 'Tabla teachers creada con éxito.\n';
         } catch (Exception $e) {
-            echo 'Error al crear la tabla teachers: ' . $e->getMessage() . ' Código del error: ' . $e->getCode();
+            echo 'Error al crear la tabla teachers: ' . $e->getMessage() . ' Código del error: ' . $e->getCode() . "\n";
         }
     }
 }

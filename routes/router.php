@@ -10,7 +10,14 @@ use src\controllers\StudentController;
 
 class Router {
 
-    public static function dispatchUri(string $httpmethod, string $url)
+    private array $dbconfig;
+
+    public function __construct(?array $dbconfig = [])
+    {
+        $this->dbconfig = $dbconfig;
+    }
+
+    public function dispatchUri(string $httpmethod, string $url)
     {
         $root = $_ENV['APP_ROOT']; // Contiene la url base de la app
 
@@ -22,7 +29,7 @@ class Router {
         // Rutas de la aplicación: MÉTODO + URL + FUNCIÓN DEL CONTROLADOR
         $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) use ($root) {
 
-            $studentController = new StudentController();
+            $studentController = new StudentController($this->dbconfig);
 
             $r->addRoute('GET', "$root/", [InicioController::class, 'index']);
             $r->addRoute('GET', "$root/users", [InicioController::class, 'users']);

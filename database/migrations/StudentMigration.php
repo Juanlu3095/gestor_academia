@@ -22,9 +22,9 @@ class StudentMigration {
             $consulta = $conexion->accesoDB()->prepare($sql);
             $consulta->execute();
             
-            echo 'Tabla students creada con éxito.';
+            echo 'Tabla students creada con éxito.\n';
         } catch (Exception $e) {
-            echo 'Error al crear la tabla students: ' . $e->getMessage() . ' Código del error: ' . $e->getCode();
+            echo 'Error al crear la tabla students: ' . $e->getMessage() . ' Código del error: ' . $e->getCode() . "\n";
         }
     }
 }

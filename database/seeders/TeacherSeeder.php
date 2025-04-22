@@ -22,9 +22,9 @@ class TeacherSeeder extends Connection {
             $consulta = $conexion->prepare($sql);
             $consulta->execute($row);
 
-            echo 'Ejecución del seeder de teachers ejecutado con éxito.';
+            echo 'Ejecución del seeder de teachers ejecutado con éxito.\n';
         } catch (Exception $e) {
-            echo 'Error al ejecutar el seed de teachers: ' . $e->getMessage() . ' Código del error: ' . $e->getCode();
+            echo 'Error al ejecutar el seed de teachers: ' . $e->getMessage() . ' Código del error: ' . $e->getCode() . "\n";
         }
     }
 }
