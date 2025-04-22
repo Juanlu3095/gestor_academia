@@ -1,5 +1,9 @@
 RewriteEngine On
 RewriteBase /gestor_academia_mvc/
+
+RewriteCond %{REQUEST_URI} ^/gestor_academia_mvc/test/$
+RewriteRule ^(.*)$ public/test.php [L,QSA]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 Options -Indexes
@@ -8,4 +12,4 @@ RewriteRule ^(.*)$ public/index.php [L]
 
 # Línea 1: activamos Apache server’s runtime rewriting engine
 # Línea 2: limitamos el acceso a archivos físicos
-# Línea 3: redirigimos las peticiones a index.php
+# DirectoryIndex: redirigimos las peticiones a index.php

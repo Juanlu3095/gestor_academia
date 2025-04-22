@@ -29,9 +29,9 @@ class UserSeeder extends Connection {
             $consulta->bindParam(':password', $row['password']);
             $consulta->execute();
 
-            echo 'Ejecución del seeder de users ejecutado con éxito.';
+            echo 'Ejecución del seeder de users ejecutado con éxito.\n';
         } catch (Exception $e) {
-            echo 'Error al ejecutar el seed de users: ' . $e->getMessage() . ' Código del error: ' . $e->getCode();
+            echo 'Error al ejecutar el seed de users: ' . $e->getMessage() . ' Código del error: ' . $e->getCode() . "\n";
         }
     }
 }

@@ -21,9 +21,9 @@ class UserMigration {
             $consulta = $conexion->accesoDB()->prepare($sql);
             $consulta->execute();
 
-            echo 'Tabla users creada con éxito.';
+            echo 'Tabla users creada con éxito.\n';
         } catch (Exception $e) {
-            echo 'Error al crear la tabla users: ' . $e->getMessage() . ' Código del error: ' . $e->getCode();
+            echo 'Error al crear la tabla users: ' . $e->getMessage() . ' Código del error: ' . $e->getCode() . "\n";
         }
     }
 }

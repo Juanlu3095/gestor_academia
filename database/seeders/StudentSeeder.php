@@ -31,9 +31,9 @@ class StudentSeeder extends Connection {
             $consulta->bindParam(':dni', $row['dni']);
             $consulta->execute();
 
-            echo 'Ejecución del seeder de students ejecutado con éxito.';
+            echo 'Ejecución del seeder de students ejecutado con éxito.\n';
         } catch (Exception $e) {
-            echo 'Error al ejecutar el seed de students: ' . $e->getMessage() . ' Código del error: ' . $e->getCode();
+            echo 'Error al ejecutar el seed de students: ' . $e->getMessage() . ' Código del error: ' . $e->getCode() . "\n";
         }
     }
 }

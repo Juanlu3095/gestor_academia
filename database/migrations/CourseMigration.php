@@ -22,9 +22,9 @@ class CourseMigration {
             $consulta = $conexion->accesoDB()->prepare($sql);
             $consulta->execute();
 
-            echo 'Tabla courses creada con éxito.';
+            echo 'Tabla courses creada con éxito.\n';
         } catch (Exception $e) {
-            echo 'Error al crear la tabla courses: ' . $e->getMessage() . ' Código del error: ' . $e->getCode();
+            echo 'Error al crear la tabla courses: ' . $e->getMessage() . ' Código del error: ' . $e->getCode() . "\n";
         }
     }
 }

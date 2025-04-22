@@ -7,6 +7,7 @@ require_once __DIR__ . '/../config/env.php'; // Llamamos al archivo del config p
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 
-Router::dispatchUri($httpMethod, $uri);
+$router = new Router();
+$router->dispatchUri($httpMethod, $uri);
 
 ?>

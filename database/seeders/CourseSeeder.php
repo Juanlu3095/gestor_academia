@@ -27,7 +27,7 @@ class CourseSeeder extends Connection {
 
             return $resultado['id'];
         } catch (Exception $e) {
-            echo 'Error al obtener un profesor para el seed de courses: ' . $e->getMessage() . ' Código del error: ' . $e->getCode();
+            echo 'Error al obtener un profesor para el seed de courses: ' . $e->getMessage() . ' Código del error: ' . $e->getCode() . "\n";
         }
     }
 
@@ -42,9 +42,9 @@ class CourseSeeder extends Connection {
             $consulta = $conexion->prepare($sql);
             $consulta->execute($row);
 
-            echo 'Ejecución del seeder de courses ejecutado con éxito.';
+            echo 'Ejecución del seeder de courses ejecutado con éxito.\n';
         } catch (Exception $e) {
-            echo 'Error al ejecutar el seed de courses: ' . $e->getMessage() . ' Código del error: ' . $e->getCode();
+            echo 'Error al ejecutar el seed de courses: ' . $e->getMessage() . ' Código del error: ' . $e->getCode() . "\n";
         }
     }
 }
